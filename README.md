@@ -1,7 +1,20 @@
-# rust-new-project-template
-A good starting point for a new Rust project
+# Weather Analysis Microservice
 
-weather report
+Users can know the information of past few years' weather to do analysis in related fields. This microservice can be searched by some different types of keywords. For example, date or weather event. 
+
+## Dataset and platform
+
+AWS S3 bucket
+
+WeatherEvents_Jan2016-Dec2021.csv
+
+## Language and Structure
+
+Rust with Actix-web
+
+## Work flow
+
+Week 1: Baisc structure of actix web and connect to aws S3
 
 ## References
 
