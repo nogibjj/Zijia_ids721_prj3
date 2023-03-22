@@ -1,6 +1,7 @@
 // a web microservice that use actic web framework
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 use futures::StreamExt;
+use prj3::{get_csv_file, get_matching_records, get_report};
 use rusoto_core::{Region, RusotoError};
 use rusoto_s3::{
     GetObjectRequest, ListObjectsV2Error, ListObjectsV2Output, ListObjectsV2Request, S3Client, S3,
@@ -26,15 +27,22 @@ async fn list_bucket_objects(
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env::set_var("AWS_ACCESS_KEY_ID", "AKIAZPVSLPTYRDERCKEN");
-    env::set_var("AWS_SECRET_ACCESS_KEY", "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");
+    env::set_var(
+        "AWS_SECRET_ACCESS_KEY",
+        "DXCdayT1kQSgPSLonRpkOQgG/zVaZAU1cVFdkon9",
+    );
 
     let client = S3Client::new(Region::default());
 
     let result = list_bucket_objects(client, "ids721prj3").await;
     println!("{:#?}", result);
 
-    HttpServer::new(|| App::new().route("/", web::get().to(index)))
-        .bind("127.0.0.1:8080")?
-        .run()
-        .await
+    HttpServer::new(|| {
+        App::new()
+            .route("/", web::get().to(index))
+            .service(get_report)
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
 }

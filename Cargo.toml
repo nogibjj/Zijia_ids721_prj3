@@ -10,3 +10,6 @@ actix-web = "4.3.0"
 rusoto_s3 = "0.48.0"
 rusoto_core = "0.48.0"
 futures = "0.3.16"
+aws-sdk-s3 = "0.24.0"
+csv = "1.1.6"
+tokio = { version = "1.16.1", features = ["full"] }
