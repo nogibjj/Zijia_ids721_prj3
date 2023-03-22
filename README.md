@@ -16,6 +16,10 @@ Rust with Actix-web
 
 Week 1: Baisc structure of actix web and connect to aws S3
 
+Week 2: Develop functionality
+
+Week 3: Wrap up the code
+
 ## References
 
 * [rust-cli-template](https://github.com/kbknapp/rust-cli-template)
